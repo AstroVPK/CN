@@ -25,7 +25,7 @@ X = int((x1 - x0)/delta_l)  # Number of blocks in X
 Y = int((y1 - y0)/delta_l)  # Number of blocks in Y
 Z = 1                       # Number of blocks in Z
 z1 = z0 + delta_l
-T = 250  # Number of timesteps
+T = 500  # Number of timesteps
 
 nblocks = X*Y*Z
 
@@ -124,7 +124,7 @@ for t in xrange(T):
 
 im_ani = animation.ArtistAnimation(fig2, ims, interval=50, repeat_delay=3000, blit=True)
 # To save this second animation with some metadata, use the following command:
-im_ani.save('Ag-PVC_Pipe.mp4', metadata={'artist':'VPK'})
+im_ani.save('Si_Si3N4_Plane.mp4', metadata={'artist':'VPK'})
 plt.show()
 
 

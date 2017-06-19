@@ -40,6 +40,7 @@ def dist(x, y, z, x0, y0, z0):
 def distSq(x, y, z, x0, y0, z0):
 	return math.pow((x - x0), 2.0) + math.pow((y - y0), 2.0) + math.pow((z - z0), 2.0)
 
+'''
 def r(x, y, z):                               # CFL number (<= 0.5 for accuracy)
 	x0 = 0.5
 	y0 = 0.5
@@ -70,4 +71,26 @@ def T(x, y, z):                               # Initial temperature (K)
 		temp = 10.0
 	else:
 		temp = 0.0
+	return temp
+'''
+
+def r(x, y, z):
+	x0 = 0.5
+	y0 = 0.5
+	z0 = 0.0
+	if x < x0:
+		alpha = alpha_Si
+	else:
+		alpha = alpha_Si3N4_CNTs
+	rval = (alpha*delta_t)/(2.0*delta_l_sq)
+	if rval > 0.25:
+		warnings.warn('r = %4.3e exceeds 0.25!'%(rval))
+	return rval
+
+def T(x, y, z):
+	x0 = 0.5
+	y0 = 0.5
+	z0 = 0.0
+	l = dist(x, y, z, x0, y0, z0)
+	temp = 10.0*math.exp(-dist(x, y, z, x0, y0, z0)/0.1)
 	return temp
